@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Symbols {
 
-    public static Map<String, Integer> initializeSymbols() {
+    public static Map<String, Integer> initialize() {
         Map<String, Integer> symbols = new HashMap<>();
 
         symbols.put(";", 12);

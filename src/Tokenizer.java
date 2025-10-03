@@ -8,8 +8,9 @@ public class Tokenizer {
     private int pointer = 0;
 
     public Tokenizer(String filePath) {
-        words = Tokens.initializeWords();
-        symbols = Symbols.initializeSymbols();
+        words = Words.initialize();
+        symbols = Symbols.initialize();
+
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             for (String line; (line = reader.readLine()) != null; ) {
                 for (int i = 0; i < line.length(); ) {
