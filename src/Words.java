@@ -1,9 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Tokens {
+public class Words {
 
-    public static Map<String, Integer> initializeWords() {
+    public static Map<String, Integer> initialize() {
         Map<String, Integer> tokens = new HashMap<>();
 
         tokens.put("program", 1);
