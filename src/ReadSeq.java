@@ -35,8 +35,10 @@ public class ReadSeq implements ICore {
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        if (read != null) read.execute();
+        if (hasReadSeq && readSeq != null) readSeq.execute();
+        return 0;
     }
 
     @Override

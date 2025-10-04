@@ -28,8 +28,22 @@ public class Read implements ICore {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+        if (input == null) throw new RuntimeException("ERROR: NO INPUT FILE AVAILABLE");
 
+        if (!parser.identifiers().containsKey(idName)) parser.identifiers().put(idName, 0);
+
+        if (input.hasNextLine()) {
+            String currentLine = input.nextLine().trim();
+            try {
+                int value = Integer.parseInt(currentLine);
+                parser.identifiers().put(idName, value);
+            } catch (NumberFormatException e) {
+                throw new RuntimeException("ERROR: EXPECTED INTEGER VALUE FOR " + idName + " BUT GOT " + currentLine, e);
+            }
+        } else throw new RuntimeException("ERROR: NO MORE LINES IN THE INPUT FILE");
+
+        return 0;
     }
 
     @Override

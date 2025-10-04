@@ -39,8 +39,10 @@ public class DeclSeq implements ICore {
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        decl.execute();
+        if (hasDeclSeq) declSeq.execute();
+        return 0;
     }
 
     @Override

@@ -24,8 +24,15 @@ public class Expr implements ICore {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+        int leftValue = term.execute();
+        if (expr == null) return leftValue;
 
+        int rightValue = expr.execute();
+        if (opToken == Types.PLUS) return leftValue + rightValue;
+        if (opToken == Types.MINUS) return leftValue - rightValue;
+
+        return leftValue;
     }
 
     @Override

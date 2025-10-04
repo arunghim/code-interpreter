@@ -22,7 +22,8 @@ public class Decl implements ICore {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+        return 0;
     }
 
     @Override

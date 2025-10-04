@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Write implements ICore {
     private final Tokenizer tokenizer;
     private final Parser parser;
-    private ArrayList<String> idNames;
+    private final ArrayList<String> idNames;
 
     public Write(Tokenizer tokenizer, Parser parser) {
         this.tokenizer = tokenizer;
@@ -31,8 +31,18 @@ public class Write implements ICore {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+        for (String idName : idNames) {
+            if (!parser.identifiers().containsKey(idName))
+                throw new IllegalArgumentException("ERROR: UNDECLARED IDENTIFIER " + idName);
+            else {
+                Object value = parser.identifiers().get(idName);
+                if (value == null) throw new IllegalStateException("ERROR: IDENTIFIER " + idName + " NOT INITIALIZED");
+                System.out.println(idName + " = " + value);
+            }
+        }
 
+        return 0;
     }
 
     @Override

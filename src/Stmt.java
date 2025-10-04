@@ -32,12 +32,16 @@ public class Stmt implements ICore {
             Assign coreAssign = new Assign(tokenizer, parser);
             coreAssign.parse();
             stmt = coreAssign;
-        } else throw new RuntimeException("ERROR: INVALID STATEMENT TOKEN");
+        } else {
+            if (tokenizer.getToken() == Types.EOF || tokenizer.getToken() == Types.ELSE) return;
+            else throw new RuntimeException("ERROR: INVALID STATEMENT TOKEN");
+        }
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        stmt.execute();
+        return 0;
     }
 
     @Override

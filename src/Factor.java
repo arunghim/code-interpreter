@@ -43,8 +43,11 @@ public class Factor implements ICore {
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        if (isExpr) return expr.execute();
+        else if (isInt) return value;
+        else if (isId) return parser.identifiers().get(idName);
+        return 0;
     }
 
     @Override

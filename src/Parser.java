@@ -7,15 +7,13 @@ public class Parser {
     private Prog prog;
 
     public Parser(String program, String data) {
-        this.data = data;
         this.tokenizer = new Tokenizer(program);
+        this.data = data;
         build();
     }
 
     private void build() {
-        if (tokenizer.getToken() != Types.PROGRAM) {
-            throw new RuntimeException("ERROR: PROGRAM TOKEN EXPECTED");
-        }
+        if (tokenizer.getToken() != Types.PROGRAM) throw new RuntimeException("ERROR: PROGRAM TOKEN EXPECTED");
         prog = new Prog(tokenizer, this);
     }
 

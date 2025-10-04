@@ -38,8 +38,11 @@ public class If implements ICore {
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        int condVal = cond.execute();
+        if (condVal != 0) ifSeq.execute();
+        else if (hasAlt) elseSeq.execute();
+        return 0;
     }
 
     @Override
