@@ -1,6 +1,6 @@
 public class Term implements ICore {
-    private Tokenizer tokenizer;
-    private Parser parser;
+    private final Tokenizer tokenizer;
+    private final Parser parser;
     private Factor factor;
     private Term term;
     private int opToken;
@@ -12,7 +12,14 @@ public class Term implements ICore {
 
     @Override
     public void parse() {
-
+        factor = new Factor(tokenizer, parser);
+        factor.parse();
+        if (tokenizer.getToken() == Types.MULT) {
+            opToken = tokenizer.getToken();
+            tokenizer.skipToken();
+            term = new Term(tokenizer, parser);
+            term.parse();
+        }
     }
 
     @Override

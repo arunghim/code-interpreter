@@ -1,6 +1,6 @@
 public class Expr implements ICore {
-    private Tokenizer tokenizer;
-    private Parser parser;
+    private final Tokenizer tokenizer;
+    private final Parser parser;
     private Term term;
     private Expr expr;
     private int opToken;
@@ -12,7 +12,15 @@ public class Expr implements ICore {
 
     @Override
     public void parse() {
+        term = new Term(tokenizer, parser);
+        term.parse();
 
+        if (tokenizer.getToken() == Types.PLUS || tokenizer.getToken() == Types.MINUS) {
+            opToken = tokenizer.getToken();
+            tokenizer.skipToken();
+            expr = new Expr(tokenizer, parser);
+            expr.parse();
+        }
     }
 
     @Override

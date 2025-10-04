@@ -6,25 +6,25 @@ public class Symbols {
     public static Map<String, Integer> initialize() {
         Map<String, Integer> symbols = new HashMap<>();
 
-        symbols.put(";", 12);
-        symbols.put(",", 13);
-        symbols.put("=", 14);
-        symbols.put("!", 15);
-        symbols.put("[", 16);
-        symbols.put("]", 17);
-        symbols.put("&&", 18);
-        symbols.put("||", 19);
-        symbols.put("(", 20);
-        symbols.put(")", 21);
-        symbols.put("+", 22);
-        symbols.put("-", 23);
-        symbols.put("*", 24);
-        symbols.put("!=", 25);
-        symbols.put("==", 26);
-        symbols.put("<", 27);
-        symbols.put(">", 28);
-        symbols.put("<=", 29);
-        symbols.put(">=", 30);
+        symbols.put(";", Types.SEMICOLON);
+        symbols.put(",", Types.COMMA);
+        symbols.put("=", Types.ASSIGN);
+        symbols.put("!", Types.EXCLAMATION);
+        symbols.put("[", Types.LEFT_BRACKET);
+        symbols.put("]", Types.RIGHT_BRACKET);
+        symbols.put("&&", Types.AND);
+        symbols.put("||", Types.OR);
+        symbols.put("(", Types.LEFT_PAREN);
+        symbols.put(")", Types.RIGHT_PAREN);
+        symbols.put("+", Types.PLUS);
+        symbols.put("-", Types.MINUS);
+        symbols.put("*", Types.MULT);
+        symbols.put("!=", Types.NOT_EQUALS);
+        symbols.put("==", Types.EQUALS);
+        symbols.put("<", Types.LESS);
+        symbols.put(">", Types.GREATER);
+        symbols.put("<=", Types.LESS_EQUAL);
+        symbols.put(">=", Types.GREATER_EQUAL);
 
         return symbols;
     }

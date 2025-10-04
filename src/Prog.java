@@ -1,6 +1,8 @@
 public class Prog implements ICore {
-    private Tokenizer tokenizer;
-    private Parser parser;
+    private final Tokenizer tokenizer;
+    private final Parser parser;
+    private DeclSeq declSeq;
+    private StmtSeq stmtSeq;
 
     public Prog(Tokenizer tokenizer, Parser parser) {
         this.tokenizer = tokenizer;
@@ -9,7 +11,22 @@ public class Prog implements ICore {
 
     @Override
     public void parse() {
+        if (tokenizer.getToken() != Types.PROGRAM) throw new RuntimeException("ERROR: PROGRAM TOKEN EXPECTED");
+        tokenizer.skipToken();
 
+        declSeq = new DeclSeq(tokenizer, parser);
+        declSeq.parse();
+
+        if (tokenizer.getToken() != Types.BEGIN) throw new RuntimeException("ERROR: BEGIN TOKEN EXPECTED");
+        tokenizer.skipToken();
+
+        stmtSeq = new StmtSeq(tokenizer, parser);
+        stmtSeq.parse();
+
+        if (tokenizer.getToken() != Types.END) throw new RuntimeException("ERROR: END TOKEN EXPECTED");
+        tokenizer.skipToken();
+
+        if (tokenizer.getToken() != Types.EOF) throw new RuntimeException("ERROR: EOF TOKEN EXPECTED");
     }
 
     @Override

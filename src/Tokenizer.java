@@ -1,5 +1,9 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Tokenizer {
 
@@ -39,7 +43,8 @@ public class Tokenizer {
 
                     if (Character.isLetter(currChar) || currChar == '_') {
                         int start = i;
-                        while (i < line.length() && (Character.isLetterOrDigit(line.charAt(i)) || line.charAt(i) == '_')) {
+                        while (i < line.length() &&
+                                (Character.isLetterOrDigit(line.charAt(i)) || line.charAt(i) == '_')) {
                             i++;
                         }
                         tokens.add(line.substring(start, i));
@@ -66,31 +71,35 @@ public class Tokenizer {
 
     public int getToken() {
         if (pointer >= tokens.size()) {
-            return 33;
+            return Types.EOF;
         }
+
         String currToken = tokens.get(pointer);
         if (currToken.equals("---")) {
-            return 34;
+            return Types.INVALID;
         }
-        if (words.containsKey(currToken)) {
-            return words.get(currToken);
+
+        String upperToken = currToken.toUpperCase();
+
+        if (words.containsKey(upperToken)) {
+            return words.get(upperToken);
         }
         if (symbols.containsKey(currToken)) {
             return symbols.get(currToken);
         }
         if (currToken.chars().allMatch(Character::isDigit)) {
-            return 31;
+            return Types.INT_CONST;
         }
         if (Character.isLetter(currToken.charAt(0)) || currToken.charAt(0) == '_') {
-            return 32;
+            return Types.ID;
         }
-        return 34;
+
+        return Types.INVALID;
     }
 
     public void skipToken() {
-        if (getToken() != 33) {
+        if (getToken() != Types.EOF) {
             pointer++;
-
         }
     }
 
