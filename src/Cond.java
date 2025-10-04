@@ -43,9 +43,17 @@ public class Cond implements ICore {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+        if (comp != null) return comp.execute();
 
+        int leftVal = leftCond.execute();
+        if (opToken == Types.AND) return (leftVal != 0 && rightCond.execute() != 0) ? 1 : 0;
+        else if (opToken == Types.OR) return (leftVal != 0 || rightCond.execute() != 0) ? 1 : 0;
+        else if (opToken == Types.EXCLAMATION) return (leftVal == 0) ? 1 : 0;
+
+        return leftVal;
     }
+
 
     @Override
     public void print(int indent) {

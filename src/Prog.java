@@ -30,8 +30,10 @@ public class Prog implements ICore {
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        declSeq.execute();
+        stmtSeq.execute();
+        return 0;
     }
 
     @Override

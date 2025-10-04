@@ -29,8 +29,11 @@ public class While implements ICore {
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        while (cond.execute() != 0) {
+            stmtSeq.execute();
+        }
+        return 0;
     }
 
     @Override

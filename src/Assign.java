@@ -27,8 +27,12 @@ public class Assign implements ICore {
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+        int value = expr.execute();
+        if (parser.identifiers().containsKey(idName)) parser.identifiers().put(idName, value);
+        else throw new RuntimeException("ERROR: ID " + idName + " NOT DECLARED");
 
+        return 0;
     }
 
     @Override

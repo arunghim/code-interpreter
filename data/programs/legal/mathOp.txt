@@ -28,6 +28,7 @@ begin
 
     INDEX = 1;
     POWER = X;
+    write POWER;
     while (INDEX < Y) loop
         POWER = POWER * X;
         INDEX = INDEX + 1;

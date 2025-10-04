@@ -14,17 +14,21 @@ public class Term implements ICore {
     public void parse() {
         factor = new Factor(tokenizer, parser);
         factor.parse();
+
         if (tokenizer.getToken() == Types.MULT) {
             opToken = tokenizer.getToken();
             tokenizer.skipToken();
+
             term = new Term(tokenizer, parser);
             term.parse();
         }
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        int value = factor.execute();
+        if (opToken == Types.MULT && term != null) value *= term.execute();
+        return value;
     }
 
     @Override

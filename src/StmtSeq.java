@@ -3,12 +3,12 @@ public class StmtSeq implements ICore {
     private final Parser parser;
     private StmtSeq stmtSeq;
     private Stmt stmt;
-    private boolean flag;
+    private boolean hasStmtSeq;
 
     public StmtSeq(Tokenizer tokenizer, Parser parser) {
         this.tokenizer = tokenizer;
         this.parser = parser;
-        flag = false;
+        hasStmtSeq = false;
     }
 
     @Override
@@ -19,13 +19,15 @@ public class StmtSeq implements ICore {
         if (token != Types.END && token != Types.ELSE && token != Types.LOOP) {
             stmtSeq = new StmtSeq(tokenizer, parser);
             stmtSeq.parse();
-            flag = true;
+            hasStmtSeq = true;
         }
     }
 
     @Override
-    public void execute() {
-
+    public int execute() {
+        stmt.execute();
+        if (hasStmtSeq) stmtSeq.execute();
+        return 0;
     }
 
     @Override
