@@ -1,6 +1,6 @@
 public class ReadSeq implements ICore {
-    private Tokenizer tokenizer;
-    private Parser parser;
+    private final Tokenizer tokenizer;
+    private final Parser parser;
     private Read read;
     private ReadSeq readSeq;
     private boolean hasReadSeq;
@@ -13,7 +13,25 @@ public class ReadSeq implements ICore {
 
     @Override
     public void parse() {
+        if (tokenizer.getToken() == Types.READ) tokenizer.skipToken();
 
+        read = new Read(tokenizer, parser);
+        read.parse();
+
+        if (tokenizer.getToken() == Types.COMMA) {
+            tokenizer.skipToken();
+            hasReadSeq = true;
+            readSeq = new ReadSeq(tokenizer, parser);
+            readSeq.parse();
+        }
+
+        if (tokenizer.getToken() == Types.SEMICOLON) tokenizer.skipToken();
+
+        if (tokenizer.getToken() == Types.READ) {
+            hasReadSeq = true;
+            readSeq = new ReadSeq(tokenizer, parser);
+            readSeq.parse();
+        }
     }
 
     @Override

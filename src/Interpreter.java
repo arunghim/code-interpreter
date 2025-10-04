@@ -8,7 +8,7 @@ void main() {
         Parser parser = new Parser(codePath, dataPath);
 
         parser.parse();
-        parser.print();
         parser.execute();
+        parser.print();
     }
 }

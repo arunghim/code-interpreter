@@ -1,6 +1,6 @@
 public class Factor implements ICore {
-    private Tokenizer tokenizer;
-    private Parser parser;
+    private final Tokenizer tokenizer;
+    private final Parser parser;
     private int value;
     private String idName;
     private Expr expr;
@@ -17,7 +17,29 @@ public class Factor implements ICore {
 
     @Override
     public void parse() {
+        int token = tokenizer.getToken();
 
+        if (token == Types.LEFT_PAREN) {
+            tokenizer.skipToken();
+            isExpr = true;
+            expr = new Expr(tokenizer, parser);
+            expr.parse();
+
+            if (tokenizer.getToken() != Types.RIGHT_PAREN)
+                throw new RuntimeException("ERROR: EXPECTED RIGHT PARENTHESIS TOKEN");
+            tokenizer.skipToken();
+
+        } else if (token == Types.INT_CONST) {
+            isInt = true;
+            value = tokenizer.intVal();
+            tokenizer.skipToken();
+
+        } else if (token == Types.ID) {
+            isId = true;
+            idName = tokenizer.idName();
+            tokenizer.skipToken();
+
+        } else throw new RuntimeException("ERROR: EXPECTED INT, ID, OR PARENTHESIS");
     }
 
     @Override

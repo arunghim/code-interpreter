@@ -1,7 +1,7 @@
 public interface ICore {
-    public void parse();
+    void parse();
 
-    public void execute();
+    void execute();
 
-    public void print(int indent);
+    void print(int indent);
 }

@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Parser {
-    private final static HashMap<String, Integer> identifiers = new HashMap<>();
+    private static final HashMap<String, Integer> identifiers = new HashMap<>();
     private final Tokenizer tokenizer;
     private final String data;
     private Prog prog;
@@ -13,11 +13,13 @@ public class Parser {
     }
 
     private void build() {
-        if (tokenizer.getToken() != 1) throw new RuntimeException("ERROR: PROGRAM TOKEN EXPECTED");
+        if (tokenizer.getToken() != Types.PROGRAM) {
+            throw new RuntimeException("ERROR: PROGRAM TOKEN EXPECTED");
+        }
         prog = new Prog(tokenizer, this);
     }
 
-    public static HashMap<String, Integer> identifiers() {
+    public HashMap<String, Integer> identifiers() {
         return identifiers;
     }
 
