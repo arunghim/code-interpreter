@@ -47,11 +47,16 @@ public class Factor implements ICore {
         if (isExpr) return expr.execute();
         else if (isInt) return value;
         else if (isId) return parser.identifiers().get(idName);
+
         return 0;
     }
 
-    @Override
     public void print(int indent) {
-
+        if (isExpr) {
+            System.out.print("(");
+            expr.print(indent);
+            System.out.print(")");
+        } else if (isInt) System.out.print(value);
+        else if (isId) System.out.print(idName);
     }
 }

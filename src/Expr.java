@@ -35,8 +35,12 @@ public class Expr implements ICore {
         return leftValue;
     }
 
-    @Override
     public void print(int indent) {
-
+        term.print(indent);
+        if (expr != null) {
+            if (opToken == Types.PLUS) System.out.print(" + ");
+            else if (opToken == Types.MINUS) System.out.print(" - ");
+            expr.print(indent);
+        }
     }
 }

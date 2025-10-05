@@ -28,11 +28,15 @@ public class Term implements ICore {
     public int execute() {
         int value = factor.execute();
         if (opToken == Types.MULT && term != null) value *= term.execute();
+
         return value;
     }
 
-    @Override
     public void print(int indent) {
-
+        factor.print(indent);
+        if (opToken == 24 && term != null) {
+            System.out.print(" * ");
+            term.print(indent);
+        }
     }
 }

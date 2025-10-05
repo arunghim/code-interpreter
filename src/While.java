@@ -33,11 +33,17 @@ public class While implements ICore {
         while (cond.execute() != 0) {
             stmtSeq.execute();
         }
+        
         return 0;
     }
 
     @Override
     public void print(int indent) {
-
+        String indentation = " ".repeat(indent);
+        System.out.print(indentation + "while (");
+        cond.print(0);
+        System.out.println(") loop");
+        stmtSeq.print(indent + 2);
+        System.out.println(indentation + "end;");
     }
 }
