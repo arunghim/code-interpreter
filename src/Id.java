@@ -11,21 +11,20 @@ public class Id implements ICore {
     @Override
     public void parse() {
         while (tokenizer.getToken() != Types.SEMICOLON) {
-            int token = tokenizer.getToken();
-            if (token == Types.ID) {
+            if (tokenizer.getToken() == Types.ID) {
                 idName = tokenizer.idName();
-                if (!parser.identifiers().containsKey(idName)) parser.identifiers().put(idName, null);
+                parser.identifiers().put(idName, null);
                 tokenizer.skipToken();
-            } else if (token == Types.COMMA) tokenizer.skipToken();
+            } else if (tokenizer.getToken() == Types.COMMA) tokenizer.skipToken();
             else throw new RuntimeException(
-                        "ERROR: Unexpected token '" + token + "' in identifier list.");
+                        "ERROR: Unexpected token '" + tokenizer.getToken() + "' in identifier list.");
         }
         tokenizer.skipToken();
     }
 
     @Override
     public int execute() {
-        return 0;
+        return parser.identifiers().get(idName);
     }
 
     @Override

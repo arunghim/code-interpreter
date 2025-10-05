@@ -14,22 +14,14 @@ public class Comp implements ICore {
         leftExpr = new Expr(tokenizer, parser);
         leftExpr.parse();
 
-        if (tokenizer.getToken() == Types.EQUALS) {
-            opToken = tokenizer.getToken();
+        int token = tokenizer.getToken();
+        if (token == Types.EQUALS || token == Types.LESS || token == Types.GREATER ||
+                token == Types.LESS_EQUAL || token == Types.GREATER_EQUAL) {
+            opToken = token;
             tokenizer.skipToken();
-        } else if (tokenizer.getToken() == Types.LESS) {
-            opToken = tokenizer.getToken();
-            tokenizer.skipToken();
-        } else if (tokenizer.getToken() == Types.GREATER) {
-            opToken = tokenizer.getToken();
-            tokenizer.skipToken();
-        } else if (tokenizer.getToken() == Types.LESS_EQUAL) {
-            opToken = tokenizer.getToken();
-            tokenizer.skipToken();
-        } else if (tokenizer.getToken() == Types.GREATER_EQUAL) {
-            opToken = tokenizer.getToken();
-            tokenizer.skipToken();
-        } else throw new RuntimeException("ERROR: COMPARISON TOKEN EXPECTED");
+        } else {
+            throw new RuntimeException("ERROR: COMPARISON TOKEN EXPECTED");
+        }
 
         rightExpr = new Expr(tokenizer, parser);
         rightExpr.parse();
