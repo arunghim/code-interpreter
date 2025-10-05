@@ -54,9 +54,26 @@ public class Cond implements ICore {
         return leftVal;
     }
 
-
-    @Override
     public void print(int indent) {
-
+        if (opToken == Types.EXCLAMATION) {
+            System.out.print("!(");
+            leftCond.print(0);
+            System.out.print(")");
+        } else if (opToken == Types.AND) {
+            System.out.print("(");
+            leftCond.print(0);
+            System.out.print(" && ");
+            rightCond.print(0);
+            System.out.print(")");
+        } else if (opToken == Types.OR) {
+            System.out.print("(");
+            leftCond.print(0);
+            System.out.print(" || ");
+            rightCond.print(0);
+            System.out.print(")");
+        } else {
+            if (comp != null) comp.print(0);
+            else leftCond.print(indent);
+        }
     }
 }

@@ -33,11 +33,19 @@ public class Prog implements ICore {
     public int execute() {
         declSeq.execute();
         stmtSeq.execute();
+
         return 0;
     }
 
     @Override
     public void print(int indent) {
-
+        System.out.println();
+        String indentStr = " ".repeat(indent);
+        System.out.println(indentStr + "program");
+        System.out.print(indentStr + "int ");
+        declSeq.print(indent + 1);
+        System.out.println(indentStr + "begin");
+        stmtSeq.print(indent + 1);
+        System.out.println(indentStr + "end");
     }
 }

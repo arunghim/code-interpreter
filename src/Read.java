@@ -48,6 +48,6 @@ public class Read implements ICore {
 
     @Override
     public void print(int indent) {
-
+        System.out.print(idName);
     }
 }

@@ -40,13 +40,24 @@ public class If implements ICore {
     @Override
     public int execute() {
         int condVal = cond.execute();
+
         if (condVal != 0) ifSeq.execute();
         else if (hasAlt) elseSeq.execute();
+
         return 0;
     }
 
     @Override
     public void print(int indent) {
-
+        String indentation = " ".repeat(indent);
+        System.out.print(indentation + "if (");
+        cond.print(0);
+        System.out.println(") then");
+        ifSeq.print(indent + 2);
+        if (hasAlt) {
+            System.out.println(indentation + "else");
+            elseSeq.print(indent + 2);
+        }
+        System.out.println(indentation + "end;");
     }
 }

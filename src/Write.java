@@ -13,17 +13,13 @@ public class Write implements ICore {
 
     @Override
     public void parse() {
-        tokenizer.skipToken();
-        if (tokenizer.getToken() != Types.ID) throw new IllegalArgumentException("ERROR: ID TOKEN EXPECTED");
-        idNames.add(tokenizer.idName());
-        tokenizer.skipToken();
 
-        while (tokenizer.getToken() == Types.COMMA) {
+        do {
             tokenizer.skipToken();
             if (tokenizer.getToken() != Types.ID) throw new IllegalArgumentException("ERROR: ID TOKEN EXPECTED");
             idNames.add(tokenizer.idName());
             tokenizer.skipToken();
-        }
+        } while (tokenizer.getToken() == Types.COMMA);
 
         if (tokenizer.getToken() != Types.SEMICOLON)
             throw new IllegalArgumentException("ERROR: SEMICOLON TOKEN EXPECTED");
@@ -47,6 +43,13 @@ public class Write implements ICore {
 
     @Override
     public void print(int indent) {
-
+        String indentation = " ".repeat(indent);
+        System.out.print(indentation + "write ");
+        for (int i = 0; i < idNames.size(); i++) {
+            System.out.print(idNames.get(i));
+            if (i < idNames.size() - 1)
+                System.out.print(", ");
+        }
+        System.out.println(";");
     }
 }

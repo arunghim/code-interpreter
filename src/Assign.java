@@ -29,6 +29,7 @@ public class Assign implements ICore {
     @Override
     public int execute() {
         int value = expr.execute();
+
         if (parser.identifiers().containsKey(idName)) parser.identifiers().put(idName, value);
         else throw new RuntimeException("ERROR: ID " + idName + " NOT DECLARED");
 
@@ -37,6 +38,9 @@ public class Assign implements ICore {
 
     @Override
     public void print(int indent) {
-
+        String indentation = " ".repeat(indent);
+        System.out.print(indentation + idName + " = ");
+        expr.print(0);
+        System.out.println(";");
     }
 }

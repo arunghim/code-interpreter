@@ -42,11 +42,16 @@ public class DeclSeq implements ICore {
     public int execute() {
         decl.execute();
         if (hasDeclSeq) declSeq.execute();
+
         return 0;
     }
 
     @Override
     public void print(int indent) {
-
+        decl.print(0);
+        if (hasDeclSeq) {
+            System.out.print(", ");
+            declSeq.print(0);
+        } else System.out.println(";");
     }
 }

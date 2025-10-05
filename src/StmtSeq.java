@@ -27,11 +27,13 @@ public class StmtSeq implements ICore {
     public int execute() {
         stmt.execute();
         if (hasStmtSeq) stmtSeq.execute();
+        
         return 0;
     }
 
     @Override
     public void print(int indent) {
-
+        stmt.print(indent);
+        if (hasStmtSeq) stmtSeq.print(indent);
     }
 }

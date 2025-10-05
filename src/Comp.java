@@ -49,8 +49,14 @@ public class Comp implements ICore {
         return flag ? 1 : 0;
     }
 
-    @Override
-    public void print(int indent) {
 
+    public void print(int indent) {
+        leftExpr.print(0);
+        if (opToken == Types.EQUALS) leftExpr.print(0);
+        else if (opToken == Types.LESS) leftExpr.print(0);
+        else if (opToken == Types.GREATER) leftExpr.print(0);
+        else if (opToken == Types.LESS_EQUAL) leftExpr.print(0);
+        else if (opToken == Types.GREATER_EQUAL) leftExpr.print(0);
+        rightExpr.print(0);
     }
 }
