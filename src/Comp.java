@@ -42,13 +42,26 @@ public class Comp implements ICore {
     }
 
 
+    @Override
     public void print(int indent) {
         leftExpr.print(0);
-        if (opToken == Types.EQUALS) leftExpr.print(0);
-        else if (opToken == Types.LESS) leftExpr.print(0);
-        else if (opToken == Types.GREATER) leftExpr.print(0);
-        else if (opToken == Types.LESS_EQUAL) leftExpr.print(0);
-        else if (opToken == Types.GREATER_EQUAL) leftExpr.print(0);
+        switch (opToken) {
+            case Types.EQUALS:
+                System.out.print(" == ");
+                break;
+            case Types.LESS:
+                System.out.print(" < ");
+                break;
+            case Types.GREATER:
+                System.out.print(" > ");
+                break;
+            case Types.LESS_EQUAL:
+                System.out.print(" <= ");
+                break;
+            case Types.GREATER_EQUAL:
+                System.out.print(" >= ");
+                break;
+        }
         rightExpr.print(0);
     }
 }
