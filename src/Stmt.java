@@ -33,7 +33,11 @@ public class Stmt implements ICore {
             Assign coreAssign = new Assign(tokenizer, parser);
             coreAssign.parse();
             stmt = coreAssign;
-        } else {
+        } else if(token == Types.FOR){
+            For codeFor = new For(tokenizer, parser);
+            codeFor.parse();
+            stmt = codeFor;
+        }else {
             if (tokenizer.getToken() != Types.EOF || tokenizer.getToken() != Types.ELSE)
                 throw new RuntimeException("ERROR: INVALID STATEMENT TOKEN");
         }

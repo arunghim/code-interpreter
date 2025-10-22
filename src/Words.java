@@ -17,7 +17,7 @@ public class Words {
         tokens.put("LOOP", Types.LOOP);
         tokens.put("READ", Types.READ);
         tokens.put("WRITE", Types.WRITE);
-
+        tokens.put("FOR", Types.FOR);
         return tokens;
     }
 }
