@@ -15,8 +15,9 @@ public class Term implements ICore {
         factor = new Factor(tokenizer, parser);
         factor.parse();
 
-        if (tokenizer.getToken() == Types.MULT) {
-            opToken = tokenizer.getToken();
+        int token = tokenizer.getToken();
+        if (token == Types.MULT || token == Types.DIV || token == Types.EXP) {
+            opToken = token;
             tokenizer.skipToken();
 
             term = new Term(tokenizer, parser);
@@ -27,15 +28,39 @@ public class Term implements ICore {
     @Override
     public int execute() {
         int value = factor.execute();
-        if (opToken == Types.MULT && term != null) value *= term.execute();
+
+        if (term != null) {
+            switch (opToken) {
+                case Types.MULT:
+                    value *= term.execute();
+                    break;
+                case Types.DIV:
+                    value /= term.execute();
+                    break;
+                case Types.EXP:
+                    value = (int) Math.pow(value, term.execute());
+                    break;
+            }
+        }
 
         return value;
     }
 
     public void print(int indent) {
         factor.print(indent);
-        if (opToken == 24 && term != null) {
-            System.out.print(" * ");
+
+        if (term != null) {
+            switch (opToken) {
+                case Types.MULT:
+                    System.out.print(" * ");
+                    break;
+                case Types.DIV:
+                    System.out.print(" / ");
+                    break;
+                case Types.EXP:
+                    System.out.print(" ^ ");
+                    break;
+            }
             term.print(indent);
         }
     }

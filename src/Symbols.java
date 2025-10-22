@@ -19,6 +19,8 @@ public class Symbols {
         symbols.put("+", Types.PLUS);
         symbols.put("-", Types.MINUS);
         symbols.put("*", Types.MULT);
+        symbols.put("/", Types.DIV);
+        symbols.put("^", Types.EXP);
         symbols.put("!=", Types.NOT_EQUALS);
         symbols.put("==", Types.EQUALS);
         symbols.put("<", Types.LESS);

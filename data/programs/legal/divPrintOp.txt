@@ -1,0 +1,12 @@
+program
+    int X, Y, Z;
+begin
+    X=5;
+    Y = 5;
+    Z = X / Y;
+    write Z;
+
+    write X;
+    Z = X ^ Y;
+    write Z;
+end

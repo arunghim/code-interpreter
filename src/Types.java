@@ -33,4 +33,6 @@ public final class Types {
     public static final int ID = 32;
     public static final int EOF = 33;
     public static final int INVALID = 34;
+    public static final int DIV = 35;
+    public static final int EXP = 36;
 }

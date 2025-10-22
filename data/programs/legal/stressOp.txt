@@ -1,0 +1,20 @@
+program
+    int A, B, C, D;
+begin
+    A = 1000;
+    B = 2000;
+    C = A * B;
+    write C;
+
+    D = 10 ^ 5;
+    write D;
+
+    A = 2;
+    B = 3;
+    C = 4;
+    D = A * B ^ C;
+    write D;
+
+    D = D / 2;
+    write D;
+end
