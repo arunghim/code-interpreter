@@ -3,10 +3,16 @@ public class Assign implements ICore {
     private final Parser parser;
     private Expr expr;
     private String idName;
+    private final boolean requireSemicolon;
 
     public Assign(Tokenizer tokenizer, Parser parser) {
+        this(tokenizer, parser, true);
+    }
+
+    public Assign(Tokenizer tokenizer, Parser parser, boolean requireSemicolon) {
         this.tokenizer = tokenizer;
         this.parser = parser;
+        this.requireSemicolon = requireSemicolon;
     }
 
     @Override
@@ -22,8 +28,11 @@ public class Assign implements ICore {
         expr = new Expr(tokenizer, parser);
         expr.parse();
 
-        if (tokenizer.getToken() != Types.SEMICOLON) throw new RuntimeException("ERROR: SEMICOLON ';' EXPECTED");
-        tokenizer.skipToken();
+        if (requireSemicolon) {
+            if (tokenizer.getToken() != Types.SEMICOLON)
+                throw new RuntimeException("ERROR: SEMICOLON ';' EXPECTED");
+            tokenizer.skipToken();
+        }
     }
 
     @Override
@@ -33,7 +42,7 @@ public class Assign implements ICore {
         if (parser.identifiers().containsKey(idName)) parser.identifiers().put(idName, value);
         else throw new RuntimeException("ERROR: ID " + idName + " NOT DECLARED");
 
-        return 0;
+        return value;
     }
 
     @Override

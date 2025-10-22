@@ -35,4 +35,5 @@ public final class Types {
     public static final int INVALID = 34;
     public static final int DIV = 35;
     public static final int EXP = 36;
+    public static final int FOR = 37;
 }

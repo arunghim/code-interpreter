@@ -42,13 +42,17 @@ public class Comp implements ICore {
     }
 
 
+    @Override
     public void print(int indent) {
         leftExpr.print(0);
-        if (opToken == Types.EQUALS) leftExpr.print(0);
-        else if (opToken == Types.LESS) leftExpr.print(0);
-        else if (opToken == Types.GREATER) leftExpr.print(0);
-        else if (opToken == Types.LESS_EQUAL) leftExpr.print(0);
-        else if (opToken == Types.GREATER_EQUAL) leftExpr.print(0);
+        switch (opToken) {
+            case Types.EQUALS -> System.out.print(" == ");
+            case Types.LESS -> System.out.print(" < ");
+            case Types.GREATER -> System.out.print(" > ");
+            case Types.LESS_EQUAL -> System.out.print(" <= ");
+            case Types.GREATER_EQUAL -> System.out.print(" >= ");
+            default -> throw new RuntimeException("ERROR: UNKNOWN COMPARISON TOKEN");
+        }
         rightExpr.print(0);
     }
 }
