@@ -24,9 +24,11 @@ This was designed as a learning tool to explore how real interpreters and compil
 - **Recursive Descent Parser** : Builds an abstract syntax tree (AST).
 - **Interpreter Engine** : Executes the parsed AST.
 - **Symbol Table Management** : Tracks declared identifiers and their values.
+- **Expressions** : Supports `+`, `-`, `*`, `/`, `^`, and nested parentheses.
+- **Symbol Table Management** : Tracks declared identifiers and their values using a singleton pattern.
 - **Expressions** : Supports `+`, `-`, `*`, `/`, and nested parentheses.
 - **Assignments** : Evaluates and stores results in variables.
-- **Conditionals and Loops** : Implements `if`, `then`, `else`, `while`, and `end`.
+- **Conditionals and Loops** : Implements `if`, `then`, `else`, `for`, `while`, and `end`.
 - **Structured I/O** : Provides `read` and `write` statements.
 - **Pretty Printing** : Outputs parsed programs in a clean, formatted layout for readability.
 - **Error Handling** : Displays clear, descriptive syntax and runtime errors.
