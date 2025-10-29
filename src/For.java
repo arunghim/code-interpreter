@@ -3,7 +3,6 @@ public class For implements ICore {
     private final Parser parser;
     private Assign firstAssign;
     private Assign secondAssign;
-
     private Cond cond;
     private StmtSeq stmtSeq;
 
@@ -49,9 +48,10 @@ public class For implements ICore {
 
     @Override
     public int execute() {
-        for (firstAssign.execute(); cond.execute() != 0; secondAssign.execute()) {
+        for (firstAssign.execute(); cond.execute() != 0; secondAssign.execute()){
             stmtSeq.execute();
         }
+
         return 0;
     }
 
@@ -66,5 +66,4 @@ public class For implements ICore {
         stmtSeq.print(indent + 2);
         System.out.println(indentation + "end;");
     }
-
 }

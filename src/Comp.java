@@ -19,9 +19,7 @@ public class Comp implements ICore {
                 token == Types.LESS_EQUAL || token == Types.GREATER_EQUAL) {
             opToken = token;
             tokenizer.skipToken();
-        } else {
-            throw new RuntimeException("ERROR: COMPARISON TOKEN EXPECTED");
-        }
+        } else throw new RuntimeException("ERROR: COMPARISON TOKEN EXPECTED");
 
         rightExpr = new Expr(tokenizer, parser);
         rightExpr.parse();
@@ -40,7 +38,6 @@ public class Comp implements ICore {
 
         return flag ? 1 : 0;
     }
-
 
     @Override
     public void print(int indent) {

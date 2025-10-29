@@ -37,24 +37,21 @@ public class Stmt implements ICore {
             For codeFor = new For(tokenizer, parser);
             codeFor.parse();
             stmt = codeFor;
-        }else {
-            if (tokenizer.getToken() != Types.EOF || tokenizer.getToken() != Types.ELSE)
-                throw new RuntimeException("ERROR: INVALID STATEMENT TOKEN");
+        } else {
+            if (tokenizer.getToken() != Types.EOF || tokenizer.getToken() != Types.ELSE) throw new RuntimeException("ERROR: INVALID STATEMENT TOKEN");
         }
     }
 
     @Override
     public int execute() {
         stmt.execute();
-        
         return 0;
     }
 
     @Override
     public void print(int indent) {
-        if (!stmt.equals(codeReadSeq)) {
-            stmt.print(indent + 2);
-        } else {
+        if (!stmt.equals(codeReadSeq)) stmt.print(indent + 2);
+        else {
             System.out.print(" ".repeat(indent + 2) + "read ");
             stmt.print(indent + 2);
         }
