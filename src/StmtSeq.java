@@ -15,6 +15,7 @@ public class StmtSeq implements ICore {
     public void parse() {
         stmt = new Stmt(tokenizer, parser);
         stmt.parse();
+
         int token = tokenizer.getToken();
         if (token != Types.END && token != Types.ELSE && token != Types.LOOP) {
             stmtSeq = new StmtSeq(tokenizer, parser);
@@ -27,7 +28,7 @@ public class StmtSeq implements ICore {
     public int execute() {
         stmt.execute();
         if (hasStmtSeq) stmtSeq.execute();
-        
+
         return 0;
     }
 

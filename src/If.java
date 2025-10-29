@@ -32,8 +32,7 @@ public class If implements ICore {
         if (tokenizer.getToken() != Types.END) throw new RuntimeException("ERROR: END-IF TOKEN EXPECTED");
         tokenizer.skipToken();
 
-        if (tokenizer.getToken() != Types.SEMICOLON)
-            throw new RuntimeException("ERROR: SEMICOLON AFTER END-IF EXPECTED");
+        if (tokenizer.getToken() != Types.SEMICOLON) throw new RuntimeException("ERROR: SEMICOLON AFTER END-IF EXPECTED");
         tokenizer.skipToken();
     }
 

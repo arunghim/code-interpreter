@@ -32,10 +32,8 @@ public class Cond implements ICore {
                 }
             }
 
-            if (tokenizer.getToken() != Types.RIGHT_PAREN)
-                throw new RuntimeException("ERROR: RIGHT PARENTHESIS TOKEN EXPECTED");
+            if (tokenizer.getToken() != Types.RIGHT_PAREN) throw new RuntimeException("ERROR: RIGHT PARENTHESIS TOKEN EXPECTED");
             tokenizer.skipToken();
-
         } else {
             comp = new Comp(tokenizer, parser);
             comp.parse();
@@ -54,6 +52,7 @@ public class Cond implements ICore {
         return leftVal;
     }
 
+    @Override
     public void print(int indent) {
         if (opToken == Types.EXCLAMATION) {
             System.out.print("!(");

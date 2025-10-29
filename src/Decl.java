@@ -1,23 +1,38 @@
 public class Decl implements ICore {
     private final Tokenizer tokenizer;
-    private final Parser parser;
     private String idName;
 
-    public Decl(Tokenizer tokenizer, Parser parser) {
+    public Decl(Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
-        this.parser = parser;
     }
 
     @Override
     public void parse() {
-        if (tokenizer.getToken() == Types.ID) {
-            idName = tokenizer.idName();
-            if (!parser.identifiers().containsKey(idName)) {
-                Id id = new Id(parser, tokenizer);
-                id.parse();
-            } else throw new RuntimeException("ERROR: ID '" + idName + "' ALREADY DECLARED.");
-        } else if (tokenizer.getToken() != Types.SEMICOLON)
-            throw new RuntimeException("ERROR: ID OR SEMICOLON TOKEN EXPECTED");
+        if (tokenizer.getToken() != Types.ID) throw new RuntimeException("ERROR: ID TOKEN EXPECTED AT START OF DECLARATION.");
+
+        Id idManager = Id.getInstance(tokenizer);
+        idName = tokenizer.idName();
+
+        if (idManager.isDeclared(idName)) throw new RuntimeException("ERROR: ID '" + idName + "' ALREADY DECLARED.");
+
+        idManager.declare(idName);
+        tokenizer.skipToken();
+
+        if (tokenizer.getToken() == Types.COMMA) {
+            tokenizer.skipToken();
+            while (tokenizer.getToken() == Types.ID) {
+                idName = tokenizer.idName();
+                if (idManager.isDeclared(idName)) throw new RuntimeException("ERROR: ID '" + idName + "' ALREADY DECLARED.");
+                idManager.declare(idName);
+                tokenizer.skipToken();
+                if (tokenizer.getToken() == Types.COMMA)
+                    tokenizer.skipToken();
+            }
+        }
+
+        if (tokenizer.getToken() != Types.SEMICOLON) throw new RuntimeException("ERROR: SEMICOLON ';' EXPECTED AFTER DECLARATION LIST.");
+
+        tokenizer.skipToken();
     }
 
     @Override
@@ -27,6 +42,7 @@ public class Decl implements ICore {
 
     @Override
     public void print(int indent) {
-        System.out.print(idName);
+        String indentation = " ".repeat(indent);
+        System.out.print(indentation + idName + ";");
     }
 }

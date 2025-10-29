@@ -29,8 +29,7 @@ public class Assign implements ICore {
         expr.parse();
 
         if (requireSemicolon) {
-            if (tokenizer.getToken() != Types.SEMICOLON)
-                throw new RuntimeException("ERROR: SEMICOLON ';' EXPECTED");
+            if (tokenizer.getToken() != Types.SEMICOLON) throw new RuntimeException("ERROR: SEMICOLON ';' EXPECTED");
             tokenizer.skipToken();
         }
     }
@@ -39,9 +38,10 @@ public class Assign implements ICore {
     public int execute() {
         int value = expr.execute();
 
-        if (parser.identifiers().containsKey(idName)) parser.identifiers().put(idName, value);
-        else throw new RuntimeException("ERROR: ID " + idName + " NOT DECLARED");
+        Id idManager = Id.getInstance(tokenizer);
+        if (!idManager.isDeclared(idName)) throw new RuntimeException("ERROR: ID '" + idName + "' NOT DECLARED");
 
+        idManager.setValue(idName, value);
         return value;
     }
 

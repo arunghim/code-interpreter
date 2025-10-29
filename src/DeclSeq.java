@@ -13,11 +13,9 @@ public class DeclSeq implements ICore {
 
     @Override
     public void parse() {
-        if (tokenizer.getToken() == Types.INT) {
-            tokenizer.skipToken();
-        }
+        if (tokenizer.getToken() == Types.INT) tokenizer.skipToken();
 
-        decl = new Decl(tokenizer, parser);
+        decl = new Decl(tokenizer);
         decl.parse();
 
         if (tokenizer.getToken() == Types.COMMA) {
@@ -27,9 +25,7 @@ public class DeclSeq implements ICore {
             declSeq.parse();
         }
 
-        if (tokenizer.getToken() == Types.SEMICOLON) {
-            tokenizer.skipToken();
-        }
+        if (tokenizer.getToken() == Types.SEMICOLON) tokenizer.skipToken();
 
         if (tokenizer.getToken() == Types.INT) {
             hasDeclSeq = true;
