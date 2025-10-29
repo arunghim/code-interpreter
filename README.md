@@ -23,7 +23,7 @@ This was designed as a learning tool to explore how real interpreters and compil
 - **Tokenizer** : Converts source code into a stream of tokens.
 - **Recursive Descent Parser** : Builds an abstract syntax tree (AST).
 - **Interpreter Engine** : Executes the parsed AST.
-- **Symbol Table Management** : Tracks declared identifiers and their values.
+- **Symbol Table Management (Singleton `Id`)** : Tracks declared identifiers and their values using a singleton pattern for centralized management.
 - **Expressions** : Supports `+`, `-`, `*`, `/`, and nested parentheses.
 - **Assignments** : Evaluates and stores results in variables.
 - **Conditionals and Loops** : Implements `if`, `then`, `else`, `while`, and `end`.
