@@ -65,6 +65,5 @@ public class Decl implements ICore {
                 System.out.print(", ");
             }
         }
-        System.out.print(";");
     }
 }

@@ -48,10 +48,9 @@ public class For implements ICore {
 
     @Override
     public int execute() {
-        for (firstAssign.execute(); cond.execute() != 0; secondAssign.execute()){
+        for (firstAssign.execute(); cond.execute() != 0; secondAssign.execute()) {
             stmtSeq.execute();
         }
-
         return 0;
     }
 
@@ -60,9 +59,14 @@ public class For implements ICore {
         String indentation = " ".repeat(indent);
 
         System.out.print(indentation + "for (");
-        firstAssign.print(0);
+        System.out.print(firstAssign.getIdName() + " = ");
+        firstAssign.getExpr().print(0);
+        System.out.print("; ");
         cond.print(0);
-        System.out.println(")");
+        System.out.print("; ");
+        System.out.print(secondAssign.getIdName() + " = ");
+        secondAssign.getExpr().print(0);
+        System.out.println(") loop");
         stmtSeq.print(indent + 2);
         System.out.println(indentation + "end;");
     }
