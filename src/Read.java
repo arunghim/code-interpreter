@@ -39,7 +39,7 @@ public class Read implements ICore {
         try {
             int value = Integer.parseInt(currentLine);
             idManager.setValue(idName, value);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new RuntimeException("ERROR: EXPECTED INTEGER VALUE FOR '" + idName + "' BUT GOT '" + currentLine + "'", e);
         }
 
@@ -48,6 +48,6 @@ public class Read implements ICore {
 
     @Override
     public void print(int indent) {
-        System.out.print("read " + idName + ";");
+        System.out.print(idName);
     }
 }

@@ -1,5 +1,5 @@
 program
-    int X, Y;
+    int X, Y, A;
     int OPER, SUM, DIFF, PROD;
     int INDEX, POWER;
     int ERROR;
@@ -26,6 +26,10 @@ begin
         end;
     end;
 
+    for (A = 0; A < 2; A = A + 1) loop
+        write A;
+    end;
+
     INDEX = 1;
     POWER = X;
     write POWER;
@@ -34,5 +38,6 @@ begin
         INDEX = INDEX + 1;
     end;
 
+    POWER = POWER ^ 2;
     write POWER;
 end

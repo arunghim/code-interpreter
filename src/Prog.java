@@ -44,6 +44,7 @@ public class Prog implements ICore {
         System.out.println(indentStr + "program");
         System.out.print(indentStr + "int ");
         declSeq.print(indent + 1);
+        System.out.println(";");
         System.out.println(indentStr + "begin");
         stmtSeq.print(indent + 1);
         System.out.println(indentStr + "end");
