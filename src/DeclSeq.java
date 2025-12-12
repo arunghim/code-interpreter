@@ -48,6 +48,6 @@ public class DeclSeq implements ICore {
         if (hasDeclSeq) {
             System.out.print(", ");
             declSeq.print(0);
-        } else System.out.println(";");
+        }
     }
 }
