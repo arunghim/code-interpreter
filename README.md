@@ -1,7 +1,6 @@
 # Code Interpreter
 
-A **Java-based interpreter** for a minimal procedural **made-up** programming language that supports variables, arithmetic expressions, control flow, and structured parsing.  
-Built entirely from scratch using **recursive descent parsing**, **tokenization**, and an **execution engine**, this project demonstrates the foundations of **language design**, **syntax trees**, **runtime evaluation**, and **pretty-printing of source code**.
+A **Java-based interpreter** for a minimal procedural **made-up** programming language that supports variables, arithmetic expressions, control flow, and structured parsing. Built entirely from scratch using **recursive descent parsing**, **tokenization**, and an **execution engine**, this project demonstrates the foundations of **language design**, **syntax trees**, **runtime evaluation**, and **pretty-printing of source code**.
 
 ---
 
