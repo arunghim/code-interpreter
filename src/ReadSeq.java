@@ -38,16 +38,20 @@ public class ReadSeq implements ICore {
     public int execute() {
         if (read != null) read.execute();
         if (hasReadSeq && readSeq != null) readSeq.execute();
-        
         return 0;
     }
 
     @Override
     public void print(int indent) {
         read.print(indent);
-        if (hasReadSeq) {
+
+        ReadSeq curr = readSeq;
+        while (curr != null && curr.read != null) {
             System.out.print(", ");
-            readSeq.print(indent);
-        } else System.out.println(";");
+            curr.read.print(indent);
+            curr = curr.readSeq;
+        }
+
+        System.out.println(";");
     }
 }
