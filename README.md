@@ -216,6 +216,6 @@ POWER = 15625
 ````
 
 - Includes a pretty-printed version of the original program.
-- To see this program running in a simple IDE, refer to my [**Custom Parser & Interpreter**](https://github.com/arunghim/simple-ide) repository.
+- To see this program running in a custom IDE, refer to my [**SimpleIDE**](https://github.com/arunghim/simple-ide) repository.
 
 ---
