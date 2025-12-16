@@ -87,7 +87,7 @@ These rules help the parser understand the structure of the code, detect syntax 
 
 ---
 
-## Example Program
+### Example Program
 
 ````
 program
@@ -216,5 +216,6 @@ POWER = 15625
 ````
 
 - Includes a pretty-printed version of the original program.
+- To see this program running in a simple IDE, refer to my [**Custom Parser & Interpreter**](https://github.com/arunghim/simple-ide) repository.
 
 ---
